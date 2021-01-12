@@ -15,6 +15,7 @@
 		566DD18C25ADD6D8003AB542 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 566DD18A25ADD6D8003AB542 /* LaunchScreen.storyboard */; };
 		566DD19725ADD6D9003AB542 /* reddit_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD19625ADD6D9003AB542 /* reddit_clientTests.swift */; };
 		566DD1A225ADD6D9003AB542 /* reddit_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1A125ADD6D9003AB542 /* reddit_clientUITests.swift */; };
+		566DD1B425ADDEC4003AB542 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1B325ADDEC4003AB542 /* FeedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		566DD19D25ADD6D9003AB542 /* reddit-clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "reddit-clientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		566DD1A125ADD6D9003AB542 /* reddit_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reddit_clientUITests.swift; sourceTree = "<group>"; };
 		566DD1A325ADD6D9003AB542 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		566DD1B325ADDEC4003AB542 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				566DD18825ADD6D8003AB542 /* Assets.xcassets */,
 				566DD18A25ADD6D8003AB542 /* LaunchScreen.storyboard */,
 				566DD18D25ADD6D8003AB542 /* Info.plist */,
+				566DD1B325ADDEC4003AB542 /* FeedItem.swift */,
 			);
 			path = "reddit-client";
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566DD1B425ADDEC4003AB542 /* FeedItem.swift in Sources */,
 				566DD18425ADD6D6003AB542 /* ViewController.swift in Sources */,
 				566DD18025ADD6D6003AB542 /* AppDelegate.swift in Sources */,
 				566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */,
