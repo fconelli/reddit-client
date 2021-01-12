@@ -16,6 +16,7 @@
 		566DD19725ADD6D9003AB542 /* reddit_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD19625ADD6D9003AB542 /* reddit_clientTests.swift */; };
 		566DD1A225ADD6D9003AB542 /* reddit_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1A125ADD6D9003AB542 /* reddit_clientUITests.swift */; };
 		566DD1B425ADDEC4003AB542 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1B325ADDEC4003AB542 /* FeedItem.swift */; };
+		566DD1BC25ADE07D003AB542 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1BB25ADE07D003AB542 /* FeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		566DD1A125ADD6D9003AB542 /* reddit_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reddit_clientUITests.swift; sourceTree = "<group>"; };
 		566DD1A325ADD6D9003AB542 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		566DD1B325ADDEC4003AB542 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		566DD1BB25ADE07D003AB542 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,7 @@
 				566DD18825ADD6D8003AB542 /* Assets.xcassets */,
 				566DD18A25ADD6D8003AB542 /* LaunchScreen.storyboard */,
 				566DD18D25ADD6D8003AB542 /* Info.plist */,
-				566DD1B325ADDEC4003AB542 /* FeedItem.swift */,
+				566DD1C025ADE1D2003AB542 /* Feed */,
 			);
 			path = "reddit-client";
 			sourceTree = "<group>";
@@ -129,6 +131,15 @@
 				566DD1A325ADD6D9003AB542 /* Info.plist */,
 			);
 			path = "reddit-clientUITests";
+			sourceTree = "<group>";
+		};
+		566DD1C025ADE1D2003AB542 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				566DD1B325ADDEC4003AB542 /* FeedItem.swift */,
+				566DD1BB25ADE07D003AB542 /* FeedLoader.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +275,7 @@
 				566DD1B425ADDEC4003AB542 /* FeedItem.swift in Sources */,
 				566DD18425ADD6D6003AB542 /* ViewController.swift in Sources */,
 				566DD18025ADD6D6003AB542 /* AppDelegate.swift in Sources */,
+				566DD1BC25ADE07D003AB542 /* FeedLoader.swift in Sources */,
 				566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
