@@ -8,6 +8,7 @@
 import XCTest
 @testable import reddit_client
 
+
 class reddit_clientTests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -30,4 +31,14 @@ class reddit_clientTests: XCTestCase {
         }
     }
 
+    //MARK: - feed tests
+    
+    func test_load_requestsDataFromURL() {
+        let client = HTTPClient()
+        let sut = RemoteFeedLoader(client: client)
+        
+        sut.load() {_ in }
+        
+        XCTAssertNotNil(client.requestedURL)
+    }
 }
