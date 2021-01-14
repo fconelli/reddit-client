@@ -122,8 +122,6 @@
 				566DD18825ADD6D8003AB542 /* Assets.xcassets */,
 				566DD18A25ADD6D8003AB542 /* LaunchScreen.storyboard */,
 				566DD18D25ADD6D8003AB542 /* Info.plist */,
-				566DD5DE25B077EA003AB542 /* MasterViewController.swift */,
-				566DD5E325B07899003AB542 /* DetailViewController.swift */,
 			);
 			path = "reddit-client";
 			sourceTree = "<group>";
@@ -167,6 +165,8 @@
 		566DD5E825B07A35003AB542 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				566DD5DE25B077EA003AB542 /* MasterViewController.swift */,
+				566DD5E325B07899003AB542 /* DetailViewController.swift */,
 				566DD5F325B07A7F003AB542 /* FeedItemCell.swift */,
 				566DD5F425B07A7F003AB542 /* FeedItemCell.xib */,
 			);
