@@ -7,11 +7,6 @@
 
 import Foundation
 
-/// protocol for declaring extra functionality needed by RemoteFeedLoader.
-/// The idea is to make a URLSession extension that conforms to this so the loader does not depend on concrete classes and can be more flexible and easier to test
-public protocol HTTPClient {
-    func get(from url: URL)
-}
 
 public final class RemoteFeedLoader: FeedLoader {
     
@@ -23,7 +18,11 @@ public final class RemoteFeedLoader: FeedLoader {
     }
     
     func load(completion: @escaping (LoadFeedResult) -> Void) {
-        client.get(from: url)
+        client.get(from: url, completion: {result in
+            // TODO
+            // case error?  completion.error(error)
+            // case data?   completion.success([FeedItem])
+        })
     }
     
     func getURL() -> URL {
