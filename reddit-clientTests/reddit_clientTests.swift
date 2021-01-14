@@ -23,11 +23,42 @@ class reddit_clientTests: XCTestCase {
         XCTAssertEqual(client.requestedURL, url)
     }
     
+    func test_load_deliversConnectivityErrorOnClientError() {
+        let client = HTTPClientSpy()
+        client.error = NSError(domain: "test", code: 0)
+        
+        let sut = RemoteFeedLoader(client: client)
+        let expectedResult: Result<[FeedItem], RemoteFeedLoader.Error> = .failure(.connectivity)
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.load() {
+            switch ($0, expectedResult) {
+            case let (.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems)
+
+            case let (.failure(receivedError as RemoteFeedLoader.Error), .failure(expectedError)):
+                XCTAssertEqual(receivedError, expectedError)
+
+            default:
+                XCTFail("Expected result \(expectedResult) got \($0) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.1)
+    }
+    
     // MARK: - helpers
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
+        var error: Error?
         
         func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+            if let error = error {
+                completion(.failure(error))
+            }
             requestedURL = url
         }
     }

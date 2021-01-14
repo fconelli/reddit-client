@@ -16,3 +16,9 @@ struct FeedItem {
     let comments: Int
     let read: Bool = false
 }
+
+extension FeedItem: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
