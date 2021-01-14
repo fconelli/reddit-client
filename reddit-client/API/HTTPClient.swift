@@ -31,6 +31,9 @@ public class URLSessionHTTPClient: HTTPClient {
             // TODO
             // case error?  completion.failure(error)
             // case data?   completion.success(data, response)
+            if let error = error {
+                completion(.failure(error))
+            }
         }.resume()
     }
     

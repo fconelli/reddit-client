@@ -42,6 +42,9 @@ class URLSessionHTTPClientTests: XCTestCase {
         session.stub(url: url, error: error)
         
         let sut = URLSessionHTTPClient(session: session)
+        
+        let exp = expectation(description: "wait for completion")
+        
         sut.get(from: url, completion: { result in
             switch result {
             case let .failure(receivedError):
@@ -49,7 +52,11 @@ class URLSessionHTTPClientTests: XCTestCase {
             default:
                 XCTFail("Expected failure with error!")
             }
+            
+            exp.fulfill()
         })
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - helpers
