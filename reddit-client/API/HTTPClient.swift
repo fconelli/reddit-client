@@ -28,11 +28,13 @@ public class URLSessionHTTPClient: HTTPClient {
     public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
         
         session.dataTask(with: url) { data, response, error in
-            // TODO
-            // case error?  completion.failure(error)
-            // case data?   completion.success(data, response)
+            // case error?
             if let error = error {
                 completion(.failure(error))
+            }
+            // case data?
+            if let data = data, let resp = response as? HTTPURLResponse {
+                completion(.success(data, resp))
             }
         }.resume()
     }

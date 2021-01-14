@@ -8,21 +8,38 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
+    
+    var feedItemsList:[FeedItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         self.setupViews()
+        
+        // fire posts load...
+        fetchRedditPosts()
     }
     
     private func setupViews() {
         self.tableView.register(UINib(nibName: "FeedItemCell", bundle: nil), forCellReuseIdentifier: "FeedItemCell")
+    }
+    
+    // MARK: - fetch data
+    private func fetchRedditPosts() {
+        var urlSession: URLSession
+        let configuration = URLSessionConfiguration.default
+        urlSession = URLSession(configuration: configuration)
+        
+        let client = URLSessionHTTPClient(session: urlSession)
+        let loader = RemoteFeedLoader(client: client)
+        loader.load() { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
     }
 
     // MARK: - Table view data source
