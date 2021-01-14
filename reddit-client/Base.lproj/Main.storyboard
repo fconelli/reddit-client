@@ -8,45 +8,47 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="XQ1-k5-KaL">
             <objects>
-                <viewController id="zGz-TH-6Fv" sceneMemberID="viewController">
+                <viewController id="zGz-TH-6Fv" customClass="DetailViewController" customModule="reddit_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nuP-k0-hTG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beV-qx-djc">
+                                <rect key="frame" x="180.5" y="437.5" width="53.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mmM-ZT-Req"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="beV-qx-djc" firstAttribute="centerY" secondItem="nuP-k0-hTG" secondAttribute="centerY" id="N2p-Qe-yaW"/>
+                            <constraint firstItem="beV-qx-djc" firstAttribute="centerX" secondItem="nuP-k0-hTG" secondAttribute="centerX" id="uUG-Mu-4ai"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUw-3L-6LM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-33" y="229"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Reddit Posts-->
         <scene sceneID="v2z-Dc-hpw">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="yO9-Vu-z7I" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="yO9-Vu-z7I" customClass="MasterViewController" customModule="reddit_client" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LMd-wX-AWc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GFb-u3-uE8">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GFb-u3-uE8" id="Nsa-SV-1Tu">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="yO9-Vu-z7I" id="jEn-c8-4UG"/>
                             <outlet property="delegate" destination="yO9-Vu-z7I" id="ALG-Tj-5xt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="SU6-94-ncp"/>
+                    <navigationItem key="navigationItem" title="Reddit Posts" id="SU6-94-ncp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-ft-5To" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,6 +18,10 @@
 		566DD1BC25ADE07D003AB542 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1BB25ADE07D003AB542 /* FeedLoader.swift */; };
 		566DD1C625ADE422003AB542 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1C525ADE422003AB542 /* RemoteFeedLoader.swift */; };
 		566DD1DA25AF1193003AB542 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD1D925AF1193003AB542 /* HTTPClient.swift */; };
+		566DD5DF25B077EA003AB542 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD5DE25B077EA003AB542 /* MasterViewController.swift */; };
+		566DD5E425B07899003AB542 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD5E325B07899003AB542 /* DetailViewController.swift */; };
+		566DD5F525B07A7F003AB542 /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD5F325B07A7F003AB542 /* FeedItemCell.swift */; };
+		566DD5F625B07A7F003AB542 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566DD5F425B07A7F003AB542 /* FeedItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		566DD1BB25ADE07D003AB542 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 		566DD1C525ADE422003AB542 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		566DD1D925AF1193003AB542 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		566DD5DE25B077EA003AB542 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		566DD5E325B07899003AB542 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		566DD5F325B07A7F003AB542 /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
+		566DD5F425B07A7F003AB542 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 		566DD17E25ADD6D6003AB542 /* reddit-client */ = {
 			isa = PBXGroup;
 			children = (
+				566DD5E825B07A35003AB542 /* UI */,
 				566DD1C025ADE1D2003AB542 /* Feed */,
 				566DD1C425ADE410003AB542 /* API */,
 				566DD17F25ADD6D6003AB542 /* AppDelegate.swift */,
@@ -113,6 +122,8 @@
 				566DD18825ADD6D8003AB542 /* Assets.xcassets */,
 				566DD18A25ADD6D8003AB542 /* LaunchScreen.storyboard */,
 				566DD18D25ADD6D8003AB542 /* Info.plist */,
+				566DD5DE25B077EA003AB542 /* MasterViewController.swift */,
+				566DD5E325B07899003AB542 /* DetailViewController.swift */,
 			);
 			path = "reddit-client";
 			sourceTree = "<group>";
@@ -151,6 +162,15 @@
 				566DD1D925AF1193003AB542 /* HTTPClient.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		566DD5E825B07A35003AB542 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				566DD5F325B07A7F003AB542 /* FeedItemCell.swift */,
+				566DD5F425B07A7F003AB542 /* FeedItemCell.xib */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566DD5F625B07A7F003AB542 /* FeedItemCell.xib in Resources */,
 				566DD18C25ADD6D8003AB542 /* LaunchScreen.storyboard in Resources */,
 				566DD18925ADD6D8003AB542 /* Assets.xcassets in Resources */,
 				566DD18725ADD6D6003AB542 /* Main.storyboard in Resources */,
@@ -288,7 +309,10 @@
 				566DD1DA25AF1193003AB542 /* HTTPClient.swift in Sources */,
 				566DD1BC25ADE07D003AB542 /* FeedLoader.swift in Sources */,
 				566DD1C625ADE422003AB542 /* RemoteFeedLoader.swift in Sources */,
+				566DD5DF25B077EA003AB542 /* MasterViewController.swift in Sources */,
+				566DD5F525B07A7F003AB542 /* FeedItemCell.swift in Sources */,
 				566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */,
+				566DD5E425B07899003AB542 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
