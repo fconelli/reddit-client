@@ -14,8 +14,7 @@ class reddit_clientTests: XCTestCase {
     //MARK: - feed tests
     
     func test_load_requestsDataFromURL() {
-        let client = HTTPClientSpy()
-        let sut = RemoteFeedLoader(client: client)
+        let (sut, client) = makeSUT()
         let url = sut.getURL()
         
         sut.load() {_ in }
@@ -24,10 +23,9 @@ class reddit_clientTests: XCTestCase {
     }
     
     func test_load_deliversConnectivityErrorOnClientError() {
-        let client = HTTPClientSpy()
+        let (sut, client) = makeSUT()
         client.error = NSError(domain: "test", code: 0)
         
-        let sut = RemoteFeedLoader(client: client)
         let expectedResult: Result<[FeedItem], RemoteFeedLoader.Error> = .failure(.connectivity)
         
         let exp = expectation(description: "Wait for load completion")
@@ -51,6 +49,13 @@ class reddit_clientTests: XCTestCase {
     }
     
     // MARK: - helpers
+    private func makeSUT() -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteFeedLoader(client: client)
+        
+        return (sut, client)
+    }
+    
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         var error: Error?
