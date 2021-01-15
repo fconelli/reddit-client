@@ -44,43 +44,43 @@ public final class RemoteFeedLoader: FeedLoader {
 }
 
 private class FeedItemsMapper {
+    private struct ResponseJSONRootElement: Decodable {
+        let data: ResponseJSONChildrenData
+    }
+
+    private struct ResponseJSONChildrenData: Decodable {
+        let children: [ResponseJSONChildren]
+    }
+
+    private struct ResponseJSONChildren: Decodable {
+        let data: FeedPost
+    }
+
+    /// internal representation of FeedItem for API module
+    private struct FeedPost: Decodable {
+        var id: String
+        var title: String
+        var author: String
+        var created_utc: Double
+        var thumbnail: String
+        var num_comments: Int
+        var visited: Bool = false
+        
+        var post: FeedItem {
+            return FeedItem(id: id,
+                            title: title,
+                            author: author,
+                            created: Date(timeIntervalSince1970: created_utc),
+                            imageUrl: thumbnail,
+                            comments: num_comments,
+                            visited: visited)
+        }
+    }
+    
     static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [FeedItem] {
         guard response.statusCode == 200 else {
             throw RemoteFeedLoader.Error.invalidData
         }
         return try JSONDecoder().decode(ResponseJSONRootElement.self, from: data).data.children.map({ $0.data.post})
-    }
-}
-
-private struct ResponseJSONRootElement: Decodable {
-    let data: ResponseJSONChildrenData
-}
-
-private struct ResponseJSONChildrenData: Decodable {
-    let children: [ResponseJSONChildren]
-}
-
-private struct ResponseJSONChildren: Decodable {
-    let data: FeedPost
-}
-
-/// internal representation of FeedItem for API module
-private struct FeedPost: Decodable {
-    var id: String
-    var title: String
-    var author: String
-    var created_utc: Double
-    var thumbnail: String
-    var num_comments: Int
-    var visited: Bool = false
-    
-    var post: FeedItem {
-        return FeedItem(id: id,
-                        title: title,
-                        author: author,
-                        created: Date(timeIntervalSince1970: created_utc),
-                        imageUrl: thumbnail,
-                        comments: num_comments,
-                        visited: visited)
     }
 }
