@@ -27,7 +27,7 @@ public final class RemoteFeedLoader: FeedLoader {
         client.get(from: url, completion: { result in
             switch result {
             case let .success(data, _):
-                if let root = try? JSONDecoder().decode(ResponseJSONRootElement.self, from: data), let posts = root.data?.children.map({ $0.data }) {
+                if let root = try? JSONDecoder().decode(ResponseJSONRootElement.self, from: data), let posts = root.data?.children.map({ $0.data.post}) {
                     completion(.success(posts))
                 } else {
                     completion(.failure(Error.invalidData))
@@ -52,5 +52,26 @@ private struct ResponseJSONChildrenData: Decodable {
 }
 
 private struct ResponseJSONChildren: Decodable {
-    let data: FeedItem
+    let data: FeedPost
+}
+
+/// internal representation of FeedItem for API module
+private struct FeedPost: Decodable {
+    var id: String
+    var title: String
+    var author: String
+    var created_utc: Double
+    var thumb_url: String?
+    var num_comments: Int
+    var visited: Bool = false
+    
+    var post: FeedItem {
+        return FeedItem(id: id,
+                        title: title,
+                        author: author,
+                        created: Date(timeIntervalSince1970: created_utc),
+                        thumb_url: thumb_url,
+                        comments: num_comments,
+                        visited: visited)
+    }
 }

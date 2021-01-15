@@ -22,6 +22,7 @@
 		566DD5E425B07899003AB542 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD5E325B07899003AB542 /* DetailViewController.swift */; };
 		566DD5F525B07A7F003AB542 /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD5F325B07A7F003AB542 /* FeedItemCell.swift */; };
 		566DD5F625B07A7F003AB542 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566DD5F425B07A7F003AB542 /* FeedItemCell.xib */; };
+		566DD61D25B1D266003AB542 /* HelpersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD61C25B1D265003AB542 /* HelpersExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		566DD5E325B07899003AB542 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		566DD5F325B07A7F003AB542 /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 		566DD5F425B07A7F003AB542 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
+		566DD61C25B1D265003AB542 /* HelpersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpersExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		566DD17E25ADD6D6003AB542 /* reddit-client */ = {
 			isa = PBXGroup;
 			children = (
+				566DD61B25B1D24C003AB542 /* Helpers */,
 				566DD5E825B07A35003AB542 /* UI */,
 				566DD1C025ADE1D2003AB542 /* Feed */,
 				566DD1C425ADE410003AB542 /* API */,
@@ -171,6 +174,14 @@
 				566DD5F425B07A7F003AB542 /* FeedItemCell.xib */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		566DD61B25B1D24C003AB542 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				566DD61C25B1D265003AB542 /* HelpersExtensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +324,7 @@
 				566DD5F525B07A7F003AB542 /* FeedItemCell.swift in Sources */,
 				566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */,
 				566DD5E425B07899003AB542 /* DetailViewController.swift in Sources */,
+				566DD61D25B1D266003AB542 /* HelpersExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

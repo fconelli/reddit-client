@@ -11,9 +11,9 @@ struct FeedItem: Decodable {
     var id: String
     var title: String
     var author: String
-    var created: Double
+    var created: Date
     var thumb_url: String?
-    var num_comments: Int
+    var comments: Int
     var visited: Bool = false
 }
 

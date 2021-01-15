@@ -43,8 +43,8 @@ class FeedItemCell: UITableViewCell {
     func setItem(_ item: FeedItem) {
         authorLabel.text = item.author
         titleLabel.text = item.title
-        commentsCountLabel.text = "\(item.num_comments) comments"
-//        dateLabel.text = item.created
+        commentsCountLabel.text = "\(item.comments) comments"
+        dateLabel.text = item.created.timeAgoDisplay()
     }
   
     func showBadge(_ show: Bool) {
