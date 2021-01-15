@@ -8,6 +8,16 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var post: FeedItem? {
+        didSet {
+            refreshUI()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,14 +26,18 @@ class DetailViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func refreshUI() {
+        loadViewIfNeeded()
+        authorNameLabel.text = post?.author
+        descriptionLabel.text = post?.title
+        if let urlString = post?.imageUrl, let imageURL = URL(string: urlString) {
+            postImageView.load(url: imageURL)
+        }
     }
-    */
+}
 
+extension DetailViewController: PostSelectionDelegate {
+    func postSelected(_ newPost: FeedItem) {
+        post = newPost
+    }
 }

@@ -39,6 +39,9 @@ class FeedItemCell: UITableViewCell {
         
         accessoryView = UIImageView(image: UIImage(systemName: "chevron.right"))
         accessoryView?.tintColor = .white
+        
+        self.badgeView.layer.cornerRadius = self.badgeView.frame.width / 2
+        self.badgeView.clipsToBounds = true
     }
     
     func setItem(_ item: FeedItem) {
