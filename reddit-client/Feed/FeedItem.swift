@@ -13,6 +13,7 @@ struct FeedItem: Decodable {
     var author: String
     var created: Date
     var imageUrl: String
+    var imageFullSizeUrl: String
     var comments: Int
     var visited: Bool = false
 }

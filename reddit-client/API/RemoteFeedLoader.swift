@@ -63,6 +63,7 @@ private class FeedItemsMapper {
         var author: String
         var created_utc: Double
         var thumbnail: String
+        var url: String
         var num_comments: Int
         var visited: Bool = false
         
@@ -72,6 +73,7 @@ private class FeedItemsMapper {
                             author: author,
                             created: Date(timeIntervalSince1970: created_utc),
                             imageUrl: thumbnail,
+                            imageFullSizeUrl: url,
                             comments: num_comments,
                             visited: visited)
         }

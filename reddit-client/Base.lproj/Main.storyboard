@@ -29,8 +29,8 @@
                                     <constraint firstAttribute="width" constant="150" id="hf5-P9-fyO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgR-WL-o4c">
-                                <rect key="frame" x="20" y="283" width="87.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgR-WL-o4c">
+                                <rect key="frame" x="20" y="283" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,6 +43,7 @@
                             <constraint firstItem="AgR-WL-o4c" firstAttribute="top" secondItem="krt-qE-eci" secondAttribute="bottom" constant="8" symbolic="YES" id="KpX-Yv-CF5"/>
                             <constraint firstItem="beV-qx-djc" firstAttribute="leading" secondItem="mmM-ZT-Req" secondAttribute="leading" constant="20" id="N3U-xf-uEZ"/>
                             <constraint firstItem="krt-qE-eci" firstAttribute="centerX" secondItem="nuP-k0-hTG" secondAttribute="centerX" id="RXy-GJ-Dw3"/>
+                            <constraint firstItem="mmM-ZT-Req" firstAttribute="trailing" secondItem="AgR-WL-o4c" secondAttribute="trailing" constant="20" id="Re1-PG-1yF"/>
                             <constraint firstItem="krt-qE-eci" firstAttribute="top" secondItem="beV-qx-djc" secondAttribute="bottom" constant="8" symbolic="YES" id="X9D-BM-dt4"/>
                             <constraint firstItem="AgR-WL-o4c" firstAttribute="leading" secondItem="beV-qx-djc" secondAttribute="leading" id="gdU-HV-phv"/>
                         </constraints>

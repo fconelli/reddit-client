@@ -23,6 +23,10 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // tap on image
+        postImageView.isUserInteractionEnabled = true
+        postImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnImageViewAction)))
     }
     
 
@@ -30,9 +34,17 @@ class DetailViewController: UIViewController {
         loadViewIfNeeded()
         authorNameLabel.text = post?.author
         descriptionLabel.text = post?.title
-        if let urlString = post?.imageUrl, let imageURL = URL(string: urlString) {
+        if let urlString = post?.imageUrl, let imageURL = URL(string: urlString), UIApplication.shared.canOpenURL(imageURL) {
             postImageView.load(url: imageURL)
+        } else {
+            let noImageUrl = URL(string: "https://www.reddit.com/static/noimage.png")!
+            postImageView.load(url: noImageUrl)
         }
+    }
+    
+    @objc private func tapOnImageViewAction() {
+        guard let urlString = post?.imageFullSizeUrl, let imageURL = URL(string: urlString), !imageURL.absoluteString.isEmpty else { return }
+         UIApplication.shared.open(imageURL, options: [:], completionHandler: nil)
     }
 }
 
