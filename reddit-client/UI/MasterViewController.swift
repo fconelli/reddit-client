@@ -27,7 +27,17 @@ class MasterViewController: UITableViewController {
     }
     
     private func setupViews() {
+        self.view.backgroundColor = UIColor.black
+        
         self.tableView.register(UINib(nibName: "FeedItemCell", bundle: nil), forCellReuseIdentifier: "FeedItemCell")
+        
+        // Add Refresh Control to Table View
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.gray
+        
+        // Configure Refresh Control
+        refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     // MARK: - fetch data
@@ -47,9 +57,16 @@ class MasterViewController: UITableViewController {
             }
             DispatchQueue.main.async() {
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
         }
     }
+    
+    @objc private func refreshData(_ sender: Any) {
+        self.refreshControl?.beginRefreshing()
+        fetchRedditPosts()
+    }
+
 
     // MARK: - Table view data source
 
