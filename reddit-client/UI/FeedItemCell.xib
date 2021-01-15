@@ -67,6 +67,13 @@
                                     <constraint firstAttribute="width" secondItem="oAQ-f8-jjO" secondAttribute="height" id="zvH-gj-O6R"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jHJ-nF-lEc">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="5mM-3B-cVL"/>
+                                    <constraint firstAttribute="height" constant="120" id="gEV-bX-uVw"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtT-fQ-id9">
                                 <rect key="frame" x="128" y="49.5" width="247" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,7 +87,10 @@
                             <constraint firstItem="gtT-fQ-id9" firstAttribute="centerY" secondItem="d7a-14-3qG" secondAttribute="centerY" id="12O-XU-wOt"/>
                             <constraint firstItem="gtT-fQ-id9" firstAttribute="leading" secondItem="oAQ-f8-jjO" secondAttribute="trailing" constant="8" id="2iZ-mc-DWf"/>
                             <constraint firstItem="gtT-fQ-id9" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="top" priority="200" id="4OT-Ar-bBN"/>
+                            <constraint firstItem="jHJ-nF-lEc" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="top" id="4Ws-10-cmK"/>
+                            <constraint firstAttribute="bottom" secondItem="jHJ-nF-lEc" secondAttribute="bottom" id="7yZ-lk-S7r"/>
                             <constraint firstItem="oAQ-f8-jjO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d7a-14-3qG" secondAttribute="top" id="9V7-Bv-Q40"/>
+                            <constraint firstItem="jHJ-nF-lEc" firstAttribute="leading" secondItem="d7a-14-3qG" secondAttribute="leading" id="L7W-vv-TlZ"/>
                             <constraint firstAttribute="trailing" secondItem="gtT-fQ-id9" secondAttribute="trailing" id="bac-LT-mUf"/>
                             <constraint firstItem="gtT-fQ-id9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d7a-14-3qG" secondAttribute="top" id="cuU-Ym-bVi"/>
                             <constraint firstItem="oAQ-f8-jjO" firstAttribute="leading" secondItem="d7a-14-3qG" secondAttribute="leading" id="jZd-7w-9O2"/>
@@ -126,6 +136,7 @@
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
                 <outlet property="dismissPostButton" destination="Azb-7M-X2s" id="73t-jT-Lm4"/>
+                <outlet property="postImageView" destination="jHJ-nF-lEc" id="cvI-ll-ANn"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
             </connections>
             <point key="canvasLocation" x="23.913043478260871" y="62.276785714285708"/>

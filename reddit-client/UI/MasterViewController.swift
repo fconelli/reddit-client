@@ -10,6 +10,7 @@ import UIKit
 class MasterViewController: UITableViewController {
     
     var feedItemsList:[FeedItem] = []
+    var imageLoader = ImageLoader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +59,16 @@ class MasterViewController: UITableViewController {
 //        let item = FeedItem(id: "\(indexPath.row)", title: "title\(indexPath.row)", author: "author\(indexPath.row)", created: 1411975314, thumb_url: "www.a-thumbnail-url.com", comments: 23423)
 //        cell.setItem(item)
         
-        cell.setItem(feedItemsList[indexPath.row])
-
+        let item = feedItemsList[indexPath.row]
+        cell.setItem(item)
+        
+        // image loading..
+        imageLoader.load(from: item.imageUrl) { (image) in
+            if let updateCell = tableView.cellForRow(at: indexPath) as? FeedItemCell {
+                updateCell.postImageView.image = image
+            }
+        }
+        
         return cell
     }
 

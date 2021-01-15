@@ -11,7 +11,7 @@ import Foundation
 public final class RemoteFeedLoader: FeedLoader {
     
     private let client: HTTPClient
-    private let url: URL = URL(string: "https://www.reddit.com/top.json?limit=5")!
+    private let url: URL = URL(string: "https://www.reddit.com/top.json?limit=50")!
     
     /// map http client errors to domain level errors
     public enum Error: Swift.Error {
@@ -70,7 +70,7 @@ private struct FeedPost: Decodable {
     var title: String
     var author: String
     var created_utc: Double
-    var thumb_url: String?
+    var thumbnail: String
     var num_comments: Int
     var visited: Bool = false
     
@@ -79,7 +79,7 @@ private struct FeedPost: Decodable {
                         title: title,
                         author: author,
                         created: Date(timeIntervalSince1970: created_utc),
-                        thumb_url: thumb_url,
+                        imageUrl: thumbnail,
                         comments: num_comments,
                         visited: visited)
     }

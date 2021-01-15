@@ -8,6 +8,7 @@ class FeedItemCell: UITableViewCell {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var badgeView: UIView!
     @IBOutlet private weak var dismissPostButton: UIButton!
+    @IBOutlet weak var postImageView: UIImageView!
     
     
     var item: FeedItem?

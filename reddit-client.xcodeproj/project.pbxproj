@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5614805D25B219E20050A9A9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614805C25B219E20050A9A9 /* ImageLoader.swift */; };
 		566DD18025ADD6D6003AB542 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD17F25ADD6D6003AB542 /* AppDelegate.swift */; };
 		566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DD18125ADD6D6003AB542 /* SceneDelegate.swift */; };
 		566DD18725ADD6D6003AB542 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 566DD18525ADD6D6003AB542 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5614805C25B219E20050A9A9 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		566DD17C25ADD6D6003AB542 /* reddit-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "reddit-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		566DD17F25ADD6D6003AB542 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		566DD18125ADD6D6003AB542 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				566DD61C25B1D265003AB542 /* HelpersExtensions.swift */,
+				5614805C25B219E20050A9A9 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				566DD1DA25AF1193003AB542 /* HTTPClient.swift in Sources */,
 				566DD1BC25ADE07D003AB542 /* FeedLoader.swift in Sources */,
 				566DD1C625ADE422003AB542 /* RemoteFeedLoader.swift in Sources */,
+				5614805D25B219E20050A9A9 /* ImageLoader.swift in Sources */,
 				566DD5DF25B077EA003AB542 /* MasterViewController.swift in Sources */,
 				566DD5F525B07A7F003AB542 /* FeedItemCell.swift in Sources */,
 				566DD18225ADD6D6003AB542 /* SceneDelegate.swift in Sources */,

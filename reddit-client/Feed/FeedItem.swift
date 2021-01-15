@@ -12,7 +12,7 @@ struct FeedItem: Decodable {
     var title: String
     var author: String
     var created: Date
-    var thumb_url: String?
+    var imageUrl: String
     var comments: Int
     var visited: Bool = false
 }
