@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-33" y="-378"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Primary Split View Controller-->
         <scene sceneID="7sh-x1-xy7">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" id="cQT-Ob-YOt" sceneMemberID="viewController">
+                <splitViewController allowDoubleColumnStyle="YES" id="cQT-Ob-YOt" customClass="PrimarySplitViewController" customModule="reddit_client" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="m4H-HX-mXJ" kind="relationship" relationship="masterViewController" id="fQl-9N-rf7"/>
                         <segue destination="zGz-TH-6Fv" kind="relationship" relationship="detailViewController" id="83O-Wg-ypr"/>
