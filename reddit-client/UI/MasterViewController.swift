@@ -34,10 +34,13 @@ class MasterViewController: UITableViewController {
         let loader = RemoteFeedLoader(client: client)
         loader.load() { result in
             switch result {
-            case .success:
-                break
+            case let .success(list):
+                self.feedItemsList = list
             case .failure:
                 break
+            }
+            DispatchQueue.main.async() {
+                self.tableView.reloadData()
             }
         }
     }
@@ -45,15 +48,17 @@ class MasterViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return feedItemsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemCell", for: indexPath) as! FeedItemCell
 
         // Configure the cell...
-        let item = FeedItem(id: "\(indexPath.row)", title: "title\(indexPath.row)", author: "author\(indexPath.row)", created: "created \(indexPath.row)", thumb_url: "www.a-thumbnail-url.com", comments: 23423)
-        cell.setItem(item)
+//        let item = FeedItem(id: "\(indexPath.row)", title: "title\(indexPath.row)", author: "author\(indexPath.row)", created: 1411975314, thumb_url: "www.a-thumbnail-url.com", comments: 23423)
+//        cell.setItem(item)
+        
+        cell.setItem(feedItemsList[indexPath.row])
 
         return cell
     }

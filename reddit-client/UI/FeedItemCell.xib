@@ -59,7 +59,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7a-14-3qG">
                         <rect key="frame" x="16" y="51" width="375" height="120"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO" customClass="RedditPostRemoteImageView" customModule="reddit_client" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

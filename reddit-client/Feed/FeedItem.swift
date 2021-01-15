@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct FeedItem {
-    let id: String
-    let title: String
-    let author: String
-    let created: String
-    let thumb_url: String?
-    let comments: Int
-    let read: Bool = false
+struct FeedItem: Decodable {
+    var id: String
+    var title: String
+    var author: String
+    var created: Double
+    var thumb_url: String?
+    var num_comments: Int
+    var visited: Bool = false
 }
 
 extension FeedItem: Equatable {
