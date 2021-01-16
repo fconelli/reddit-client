@@ -23,7 +23,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Leq-SG-5Ib">
                                 <rect key="frame" x="0.0" y="0.0" width="8" height="27"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61U-1M-Vpf" customClass="RoundedView" customModule="reddit_client" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61U-1M-Vpf">
                                         <rect key="frame" x="0.0" y="9.5" width="8" height="8"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <constraints>
@@ -132,11 +132,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorLabel" destination="T4C-JO-R5S" id="XW1-ab-8aC"/>
-                <outlet property="badgeView" destination="Leq-SG-5Ib" id="O9x-ga-8nK"/>
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
                 <outlet property="dismissPostButton" destination="Azb-7M-X2s" id="73t-jT-Lm4"/>
                 <outlet property="postImageView" destination="jHJ-nF-lEc" id="cvI-ll-ANn"/>
+                <outlet property="readMarkContainerView" destination="Leq-SG-5Ib" id="3qf-sF-kPn"/>
+                <outlet property="readMarkView" destination="61U-1M-Vpf" id="YwN-3c-TrA"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
             </connections>
             <point key="canvasLocation" x="23.913043478260871" y="62.276785714285708"/>

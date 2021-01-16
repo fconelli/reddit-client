@@ -6,7 +6,8 @@ class FeedItemCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var commentsCountLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet private weak var badgeView: UIView!
+    @IBOutlet private weak var readMarkView: UIView!
+    @IBOutlet private weak var readMarkContainerView: UIView!
     @IBOutlet private weak var dismissPostButton: UIButton!
     @IBOutlet weak var postImageView: UIImageView!
     
@@ -40,8 +41,8 @@ class FeedItemCell: UITableViewCell {
         accessoryView = UIImageView(image: UIImage(systemName: "chevron.right"))
         accessoryView?.tintColor = .white
         
-        self.badgeView.layer.cornerRadius = self.badgeView.frame.width / 2
-        self.badgeView.clipsToBounds = true
+        self.readMarkView.layer.cornerRadius = self.readMarkView.frame.width / 2
+        self.readMarkView.clipsToBounds = true
     }
     
     func setItem(_ item: FeedItem) {
@@ -49,10 +50,12 @@ class FeedItemCell: UITableViewCell {
         titleLabel.text = item.title
         commentsCountLabel.text = "\(item.comments) comments"
         dateLabel.text = item.created.timeAgoDisplay()
+        
+        self.readMarkContainerView.isHidden = FeedsStorage.getReadPosts().contains(item.id)
     }
   
-    func showBadge(_ show: Bool) {
-        badgeView.isHidden = !show
+    func markAsRead() {
+        readMarkContainerView.isHidden = true
     }
 
     @IBAction func dismissPostButtonAction(_ sender: Any) {

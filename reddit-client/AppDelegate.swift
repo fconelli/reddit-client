@@ -7,6 +7,10 @@
 
 import UIKit
 
+var feedsProvider: FeedsProvider? = nil
+let readPostsKey = "readPostsKey"
+let dismissedPostsKey = "dismissedPostsKey"
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -14,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.startupConfig()
+        
         return true
     }
 
@@ -31,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    private func startupConfig() {
+        
+        let configuration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: configuration)
+        let client = URLSessionHTTPClient(session: urlSession)
+        let loader = RemoteFeedLoader(client: client)
+        feedsProvider = FeedsProvider(feedsLoader: loader, readPostsIds: FeedsStorage.getReadPosts(), dismissedPostsIds: FeedsStorage.getDismissedPosts())
+    }
 }
 

@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol PostSelectionDelegate: class {
-  func postSelected(_ newPost: FeedItem)
+protocol PostSelectionDelegate {
+    func postSelected(_ newPost: FeedItem)
 }
 
 class MasterViewController: UITableViewController {
     
     var feedItemsList:[FeedItem] = []
     var imageLoader = ImageLoader()
-    weak var delegate: PostSelectionDelegate?
+    var delegate: PostSelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +42,8 @@ class MasterViewController: UITableViewController {
     
     // MARK: - fetch data
     private func fetchRedditPosts() {
-        var urlSession: URLSession
-        let configuration = URLSessionConfiguration.default
-        urlSession = URLSession(configuration: configuration)
         
-        let client = URLSessionHTTPClient(session: urlSession)
-        let loader = RemoteFeedLoader(client: client)
-        loader.load() { result in
+        feedsProvider?.fetch() { result in
             switch result {
             case let .success(list):
                 self.feedItemsList = list
@@ -97,6 +92,9 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPost = feedItemsList[indexPath.row]
         delegate?.postSelected(selectedPost)
+        
+        feedsProvider?.markAsRead(selectedPost)
+        (tableView.cellForRow(at: indexPath) as? FeedItemCell)?.markAsRead()
         
         if let detailViewController = delegate as? DetailViewController {
             splitViewController?.showDetailViewController(detailViewController, sender: nil)
