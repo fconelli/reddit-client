@@ -33,9 +33,11 @@ class FeedsProvider {
     }
 
     func markAsRead(_ post: FeedItem) {
-        readPostsIds.append(post.id)
-        defaults.set(readPostsIds, forKey: readPostsKey)
-        defaults.synchronize()
+        if !isPostRead(post) {
+            readPostsIds.append(post.id)
+            defaults.set(readPostsIds, forKey: readPostsKey)
+            defaults.synchronize()
+        }
     }
   
     func isPostRead(_ post: FeedItem) -> Bool {
@@ -43,9 +45,11 @@ class FeedsProvider {
     }
 
     func markAsDismissed(_ post: FeedItem) {
-        dismissedPostsIds.append(post.id)
-        defaults.set(readPostsIds, forKey: dismissedPostsKey)
-        defaults.synchronize()
+        if !isPostDismissed(post) {
+            dismissedPostsIds.append(post.id)
+            defaults.set(dismissedPostsIds, forKey: dismissedPostsKey)
+            defaults.synchronize()
+        }
     }
   
     func isPostDismissed(_ post: FeedItem) -> Bool {

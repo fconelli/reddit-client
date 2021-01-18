@@ -24,6 +24,7 @@ class MasterViewController: UITableViewController {
         self.setupViews()
         
         // fire posts load...
+        indicator.startAnimating()
         fetchRedditPosts()
     }
     
@@ -50,12 +51,11 @@ class MasterViewController: UITableViewController {
     
     // MARK: - fetch data
     private func fetchRedditPosts() {
-        indicator.startAnimating()
         
         feedsProvider?.fetch() { result in
             switch result {
             case let .success(list):
-                self.feedItemsList = list
+                self.feedItemsList = list.filter{ !(feedsProvider?.isPostDismissed($0) ?? false) }
             case .failure:
                 break
             }
@@ -72,7 +72,25 @@ class MasterViewController: UITableViewController {
         fetchRedditPosts()
     }
 
-
+    @IBAction func dismissAllButtonAction(_ sender: Any) {
+        let msg = "Are you sure you want to dismiss ALL posts?"
+        let alert = UIAlertController(title: "Dismiss ALL posts", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .destructive, handler: { action in
+            
+            var idxArray = [IndexPath]()
+            self.feedItemsList.enumerated().forEach({ idx, post in
+                feedsProvider?.markAsDismissed(post)
+                let idxP = IndexPath(row: idx, section: 0)
+                idxArray.append(idxP)
+            })
+            self.feedItemsList.removeAll()
+            self.tableView.deleteRows(at: idxArray, with: .automatic)
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,6 +114,7 @@ class MasterViewController: UITableViewController {
             }
         }
         
+        cell.delegate = self
         return cell
     }
     
@@ -108,6 +127,28 @@ class MasterViewController: UITableViewController {
         
         if let detailViewController = delegate as? DetailViewController {
             splitViewController?.showDetailViewController(detailViewController, sender: nil)
+        }
+    }
+}
+
+extension MasterViewController: PostCellDelegate {
+    func dismissPost(_ post: FeedItem) {
+        if let idx = feedItemsList.firstIndex(of: post) {
+            
+            let msg = "Are you sure you want to dismiss this post?"
+            let alert = UIAlertController(title: "Dismiss post", message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .destructive, handler: { action in
+                
+                self.feedItemsList.remove(at: idx)
+                let ip = IndexPath(row: idx, section: 0)
+                self.tableView.deleteRows(at: [ip], with: .fade)
+                
+                feedsProvider?.markAsDismissed(post)
+                self.dismiss(animated: true, completion: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
         }
     }
 }

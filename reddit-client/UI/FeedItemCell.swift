@@ -1,5 +1,9 @@
 import UIKit
 
+protocol PostCellDelegate {
+    func dismissPost(_ post: FeedItem)
+}
+
 class FeedItemCell: UITableViewCell {
   
     @IBOutlet private weak var authorLabel: UILabel!
@@ -13,6 +17,7 @@ class FeedItemCell: UITableViewCell {
     
     
     var item: FeedItem?
+    var delegate: PostCellDelegate?
   
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,6 +51,8 @@ class FeedItemCell: UITableViewCell {
     }
     
     func setItem(_ item: FeedItem) {
+        self.item = item
+        
         authorLabel.text = item.author
         titleLabel.text = item.title
         commentsCountLabel.text = "\(item.comments) comments"
@@ -59,5 +66,8 @@ class FeedItemCell: UITableViewCell {
     }
 
     @IBAction func dismissPostButtonAction(_ sender: Any) {
+        if let post = self.item {
+            delegate?.dismissPost(post)
+        }
     }
 }

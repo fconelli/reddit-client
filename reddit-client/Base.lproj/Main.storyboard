@@ -91,7 +91,20 @@
                             <outlet property="delegate" destination="yO9-Vu-z7I" id="ALG-Tj-5xt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Top Reddit Posts" id="SU6-94-ncp"/>
+                    <navigationItem key="navigationItem" title="Top Reddit Posts" id="SU6-94-ncp">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ErT-i5-OjX">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Qwq-ge-PLy">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Dismiss all">
+                                    <color key="titleColor" systemColor="systemOrangeColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissAllButtonAction:" destination="yO9-Vu-z7I" eventType="touchUpInside" id="iHV-wD-CQ7"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-ft-5To" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,6 +143,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
