@@ -43,6 +43,8 @@ class MasterViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
+        tableView.tableFooterView = UIView()
+        
         // loader
         indicator.color = UIColor.systemOrange
         indicator.center = tableView.center
