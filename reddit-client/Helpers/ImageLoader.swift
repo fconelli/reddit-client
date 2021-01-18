@@ -30,7 +30,7 @@ class ImageLoader {
             DispatchQueue.main.async {
                 completionHandler(placeholder)
             }
-            if let url = URL(string: imagePath) {
+            if let url = URL(string: imagePath), verifyUrl(url) {
                 self.download(url, imagePath, completionHandler: completionHandler)
             } else {
                 let url = URL(string: "https://www.reddit.com/static/noimage.png")!
@@ -51,5 +51,9 @@ class ImageLoader {
             }
         })
         task.resume()
+    }
+    
+    func verifyUrl (_ url: URL) -> Bool {
+        return UIApplication.shared.canOpenURL(url as URL)
     }
 }
