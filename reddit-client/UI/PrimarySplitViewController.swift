@@ -14,7 +14,7 @@ class PrimarySplitViewController: UISplitViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.preferredDisplayMode = DisplayMode.automatic
+        self.preferredDisplayMode = .oneBesideSecondary
     }
 
     func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {

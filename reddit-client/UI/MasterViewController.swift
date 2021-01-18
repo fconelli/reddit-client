@@ -16,6 +16,7 @@ class MasterViewController: UITableViewController {
     var feedItemsList:[FeedItem] = []
     var imageLoader = ImageLoader()
     var delegate: PostSelectionDelegate?
+    let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class MasterViewController: UITableViewController {
     
     private func setupViews() {
         self.view.backgroundColor = UIColor.black
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
         self.tableView.register(UINib(nibName: "FeedItemCell", bundle: nil), forCellReuseIdentifier: "FeedItemCell")
         
@@ -38,10 +41,16 @@ class MasterViewController: UITableViewController {
         // Configure Refresh Control
         refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        
+        // loader
+        indicator.color = UIColor.systemOrange
+        indicator.center = tableView.center
+        navigationController?.viewControllers.first?.view.addSubview(indicator)
     }
     
     // MARK: - fetch data
     private func fetchRedditPosts() {
+        indicator.startAnimating()
         
         feedsProvider?.fetch() { result in
             switch result {
@@ -53,6 +62,7 @@ class MasterViewController: UITableViewController {
             DispatchQueue.main.async() {
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+                self.indicator.stopAnimating()
             }
         }
     }

@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var noPostView: UIView!
     
     var post: FeedItem? {
         didSet {
@@ -32,6 +33,10 @@ class DetailViewController: UIViewController {
 
     private func refreshUI() {
         loadViewIfNeeded()
+        
+        // no post selected?
+        noPostView.isHidden = self.post != nil
+        
         authorNameLabel.text = post?.author
         descriptionLabel.text = post?.title
         if let urlString = post?.imageUrl, let imageURL = URL(string: urlString), UIApplication.shared.canOpenURL(imageURL) {

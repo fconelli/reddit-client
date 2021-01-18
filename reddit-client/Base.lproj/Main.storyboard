@@ -35,6 +35,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="whc-cb-Fpo">
+                                <rect key="frame" x="0.0" y="0.0" width="413" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a post to view it's detail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnd-KW-fBs">
+                                        <rect key="frame" x="91" y="438" width="231" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="ieo-gE-Q22"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="lnd-KW-fBs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="whc-cb-Fpo" secondAttribute="leading" constant="16" id="QrD-hT-1EP"/>
+                                    <constraint firstItem="lnd-KW-fBs" firstAttribute="centerX" secondItem="whc-cb-Fpo" secondAttribute="centerX" id="mm5-uX-2FS"/>
+                                    <constraint firstItem="lnd-KW-fBs" firstAttribute="centerY" secondItem="whc-cb-Fpo" secondAttribute="centerY" id="vSH-U8-i5c"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mmM-ZT-Req"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,6 +70,7 @@
                     <connections>
                         <outlet property="authorNameLabel" destination="beV-qx-djc" id="9JY-eY-tZ2"/>
                         <outlet property="descriptionLabel" destination="AgR-WL-o4c" id="jdM-Ir-gjY"/>
+                        <outlet property="noPostView" destination="whc-cb-Fpo" id="aPZ-OF-8k7"/>
                         <outlet property="postImageView" destination="krt-qE-eci" id="bpY-xg-Ncu"/>
                     </connections>
                 </viewController>
@@ -58,7 +78,7 @@
             </objects>
             <point key="canvasLocation" x="-33.333333333333336" y="228.34821428571428"/>
         </scene>
-        <!--Reddit Posts-->
+        <!--Top Reddit Posts-->
         <scene sceneID="v2z-Dc-hpw">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="yO9-Vu-z7I" customClass="MasterViewController" customModule="reddit_client" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +91,7 @@
                             <outlet property="delegate" destination="yO9-Vu-z7I" id="ALG-Tj-5xt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reddit Posts" id="SU6-94-ncp"/>
+                    <navigationItem key="navigationItem" title="Top Reddit Posts" id="SU6-94-ncp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-ft-5To" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
