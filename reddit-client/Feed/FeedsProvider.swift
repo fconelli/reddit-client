@@ -55,6 +55,12 @@ class FeedsProvider {
     func isPostDismissed(_ post: FeedItem) -> Bool {
         return FeedsStorage.getDismissedPosts().contains(post.id)
     }
+    
+    func clearAllDismissedPosts() {
+        dismissedPostsIds.removeAll()
+        defaults.set(dismissedPostsIds, forKey: dismissedPostsKey)
+        defaults.synchronize()
+    }
 }
 
 

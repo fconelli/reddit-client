@@ -106,7 +106,43 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emptyView" destination="c49-OT-wZK" id="1cT-c6-Sh1"/>
+                    </connections>
                 </tableViewController>
+                <view contentMode="scaleToFill" id="c49-OT-wZK">
+                    <rect key="frame" x="0.0" y="0.0" width="454" height="886"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sp6-jS-6Na">
+                            <rect key="frame" x="137" y="362" width="180.5" height="42.5"/>
+                            <string key="text">No more posts to show!
+</string>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g45-EG-das">
+                            <rect key="frame" x="137" y="412.5" width="180.5" height="30"/>
+                            <state key="normal" title="Reload posts">
+                                <color key="titleColor" systemColor="systemOrangeColor"/>
+                            </state>
+                            <connections>
+                                <action selector="reloadPostsButtonAction:" destination="yO9-Vu-z7I" eventType="touchUpInside" id="h3u-kP-FgJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="wFR-hG-prk"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="g45-EG-das" firstAttribute="width" secondItem="Sp6-jS-6Na" secondAttribute="width" id="3u1-kA-qej"/>
+                        <constraint firstItem="Sp6-jS-6Na" firstAttribute="centerX" secondItem="c49-OT-wZK" secondAttribute="centerX" id="MsU-jR-h7D"/>
+                        <constraint firstItem="Sp6-jS-6Na" firstAttribute="centerY" secondItem="c49-OT-wZK" secondAttribute="centerY" constant="-60" id="POI-2L-bcL"/>
+                        <constraint firstItem="Sp6-jS-6Na" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c49-OT-wZK" secondAttribute="leading" constant="16" id="Pdj-ml-b9v"/>
+                        <constraint firstItem="g45-EG-das" firstAttribute="top" secondItem="Sp6-jS-6Na" secondAttribute="bottom" constant="8" id="Uvw-Q1-Q4G"/>
+                        <constraint firstItem="g45-EG-das" firstAttribute="centerX" secondItem="c49-OT-wZK" secondAttribute="centerX" id="XeZ-NF-YYa"/>
+                    </constraints>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-ft-5To" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="-378"/>

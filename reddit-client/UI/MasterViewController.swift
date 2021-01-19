@@ -13,6 +13,8 @@ protocol PostSelectionDelegate {
 
 class MasterViewController: UITableViewController {
     
+    @IBOutlet var emptyView: UIView!
+    
     var feedItemsList:[FeedItem] = []
     var imageLoader = ImageLoader()
     var delegate: PostSelectionDelegate?
@@ -87,10 +89,21 @@ class MasterViewController: UITableViewController {
             })
             self.feedItemsList.removeAll()
             self.tableView.deleteRows(at: idxArray, with: .automatic)
+            
+            self.tableView.backgroundView = self.emptyView
             self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func reloadPostsButtonAction(_ sender: Any) {
+        self.tableView.backgroundView = nil
+        feedsProvider?.clearAllDismissedPosts()
+        
+        // fire posts load...
+        indicator.startAnimating()
+        fetchRedditPosts()
     }
     
     // MARK: - Table view data source
