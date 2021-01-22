@@ -48,21 +48,37 @@ class reddit_clientTests: XCTestCase {
         waitForExpectations(timeout: 0.1)
     }
     
+//    func test_load_deliversNoItemsOnHTTPResponseWithEmptyJSONList() {
+//        let (sut, client) = makeSUT()
+//        
+//    }
+//    
+//    func test_load_deliversItemsOnHTTPResponseWithJSONItems() {
+//        let (sut, client) = makeSUT()
+//        
+//    }
+    
     // MARK: - helpers
     private func makeSUT() -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(client: client)
         
+        addTeardownBlock { [weak sut] in
+            // executes after each tests finishes
+            XCTAssertNil(sut, "Potential memory leak!")
+        }
         return (sut, client)
     }
     
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         var error: Error?
+        var complete: (HTTPClientResult) -> Void = {_ in }
         
         func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+            complete = completion
             if let error = error {
-                completion(.failure(error))
+                complete(.failure(error))
             }
             requestedURL = url
         }

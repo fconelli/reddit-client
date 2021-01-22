@@ -24,7 +24,10 @@ public final class RemoteFeedLoader: FeedLoader {
     }
     
     func load(completion: @escaping (FeedLoader.Result) -> Void) {
-        client.get(from: url, completion: { result in
+        client.get(from: url, completion: { [weak self] result in
+            
+            _ = self?.getURL()  // for mem leaks testing purposes
+            
             switch result {
             case let .success(data, response):
                 if let posts = try? FeedItemsMapper.map(data, response) {
