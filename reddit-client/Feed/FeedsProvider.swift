@@ -12,8 +12,6 @@ class FeedsProvider {
     private let feedsLoader: FeedLoader
     private var readPostsIds: [String]
     private var dismissedPostsIds: [String]
-    
-    private let defaults = UserDefaults.standard
   
     init(feedsLoader: FeedLoader, readPostsIds: [String], dismissedPostsIds: [String]) {
         self.feedsLoader = feedsLoader
@@ -35,8 +33,7 @@ class FeedsProvider {
     func markAsRead(_ post: FeedItem) {
         if !isPostRead(post) {
             readPostsIds.append(post.id)
-            defaults.set(readPostsIds, forKey: readPostsKey)
-            defaults.synchronize()
+            FeedsStorage.updateReadPosts(readPostsIds)
         }
     }
   
@@ -47,8 +44,7 @@ class FeedsProvider {
     func markAsDismissed(_ post: FeedItem) {
         if !isPostDismissed(post) {
             dismissedPostsIds.append(post.id)
-            defaults.set(dismissedPostsIds, forKey: dismissedPostsKey)
-            defaults.synchronize()
+            FeedsStorage.updateDismissedPosts(dismissedPostsIds)
         }
     }
   
@@ -58,18 +54,31 @@ class FeedsProvider {
     
     func clearAllDismissedPosts() {
         dismissedPostsIds.removeAll()
-        defaults.set(dismissedPostsIds, forKey: dismissedPostsKey)
-        defaults.synchronize()
+        FeedsStorage.updateDismissedPosts(dismissedPostsIds)
     }
 }
 
 
 class FeedsStorage {
+    static let readPostsKey = "readPostsKey"
+    static let dismissedPostsKey = "dismissedPostsKey"
+    static let defaults = UserDefaults.standard
+    
     static func getReadPosts() -> [String] {
         return UserDefaults.standard.stringArray(forKey: readPostsKey) ?? []
     }
     
     static func getDismissedPosts() -> [String] {
         return UserDefaults.standard.stringArray(forKey: dismissedPostsKey) ?? []
+    }
+    
+    static func updateReadPosts(_ posts: [String]) {
+        defaults.set(posts, forKey: readPostsKey)
+        defaults.synchronize()
+    }
+    
+    static func updateDismissedPosts(_ posts: [String]) {
+        defaults.set(posts, forKey: dismissedPostsKey)
+        defaults.synchronize()
     }
 }

@@ -8,8 +8,6 @@
 import UIKit
 
 var feedsProvider: FeedsProvider? = nil
-let readPostsKey = "readPostsKey"
-let dismissedPostsKey = "dismissedPostsKey"
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
