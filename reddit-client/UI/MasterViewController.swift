@@ -19,6 +19,7 @@ class MasterViewController: UITableViewController {
     var imageLoader = ImageLoader()
     var delegate: PostSelectionDelegate?
     let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+    var isFetchingData = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,18 +58,43 @@ class MasterViewController: UITableViewController {
     private func fetchRedditPosts() {
         
         feedsProvider?.fetch() { result in
-            switch result {
-            case let .success(list):
-                self.feedItemsList = list.filter{ !(feedsProvider?.isPostDismissed($0) ?? false) }
-            case .failure:
-                break
-            }
             DispatchQueue.main.async() {
-                self.tableView.reloadData()
+                
+                switch result {
+                case let .success(list):
+                    let newPosts = list.filter{ !(feedsProvider?.isPostDismissed($0) ?? false) }
+                    
+                    if self.feedItemsList.isEmpty {
+                        self.setPosts(newPosts)
+                    }else{
+                        self.appendPosts(newPosts)
+                    }
+                    self.isFetchingData = false
+                case .failure:
+                    // TODO
+                    break
+                }
+            
                 self.refreshControl?.endRefreshing()
                 self.indicator.stopAnimating()
             }
         }
+    }
+    
+    func setPosts(_ newPosts: [FeedItem]) {
+        self.feedItemsList = newPosts
+        self.tableView.reloadData()
+    }
+    
+    func appendPosts(_ newPosts: [FeedItem]) {
+        
+        let startIndex = self.feedItemsList.count
+        let endIndex = startIndex + newPosts.count
+        self.feedItemsList = self.feedItemsList + newPosts
+        
+        self.tableView.insertRows(at: (startIndex..<endIndex).map { idx in
+            IndexPath(row: idx, section: 0)
+        }, with: .none)
     }
     
     @objc private func refreshData(_ sender: Any) {
@@ -142,6 +168,20 @@ class MasterViewController: UITableViewController {
         
         if let detailViewController = delegate as? DetailViewController {
             splitViewController?.showDetailViewController(detailViewController, sender: nil)
+        }
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isDragging else { return }
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if (offsetY > contentHeight - scrollView.frame.height) && !feedItemsList.isEmpty {
+            
+            guard !(isFetchingData) && self.feedItemsList.count < 50 else { return }
+            
+            isFetchingData = true
+            fetchRedditPosts()
         }
     }
 }

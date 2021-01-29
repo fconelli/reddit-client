@@ -11,10 +11,12 @@ import Foundation
 public final class RemoteFeedLoader: FeedLoader {
     
     private let client: HTTPClient
-    private let url: URL = URL(string: "https://www.reddit.com/top.json?limit=50")!
+    private let url: URL = URL(string: "https://www.reddit.com/top.json")!
+    private var nextPage: String = ""
+    private var postsList: [FeedItem] = []
     
     /// map http client errors to domain level errors
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, Equatable {
         case connectivity
         case invalidData
     }
@@ -24,13 +26,15 @@ public final class RemoteFeedLoader: FeedLoader {
     }
     
     func load(completion: @escaping (FeedLoader.Result) -> Void) {
-        client.get(from: url, completion: { [weak self] result in
-            
-            _ = self?.getURL()  // for mem leaks testing purposes
+        
+        let loadURL = nextPage.isEmpty ? url : URL(string: "\(url)?after=\(nextPage)")!
+        client.get(from: loadURL, completion: { [weak self] result in
             
             switch result {
             case let .success(data, response):
-                if let posts = try? FeedItemsMapper.map(data, response) {
+                if let (posts, pageLink) = try? FeedItemsMapper.map(data, response) {
+                    self?.postsList = posts
+                    self?.nextPage = pageLink
                     completion(.success(posts))
                 } else {
                     completion(.failure(Error.invalidData))
@@ -44,6 +48,10 @@ public final class RemoteFeedLoader: FeedLoader {
     func getURL() -> URL {
         return self.url
     }
+    
+    func getPostsCount() -> Int {
+        return self.postsList.count
+    }
 }
 
 private class FeedItemsMapper {
@@ -53,6 +61,7 @@ private class FeedItemsMapper {
 
     private struct ResponseJSONChildrenData: Decodable {
         let children: [ResponseJSONChildren]
+        let after: String?
     }
 
     private struct ResponseJSONChildren: Decodable {
@@ -82,10 +91,13 @@ private class FeedItemsMapper {
         }
     }
     
-    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [FeedItem] {
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> ([FeedItem], String) {
         guard response.statusCode == 200 else {
             throw RemoteFeedLoader.Error.invalidData
         }
-        return try JSONDecoder().decode(ResponseJSONRootElement.self, from: data).data.children.map({ $0.data.post})
+        let posts = try JSONDecoder().decode(ResponseJSONRootElement.self, from: data).data.children.map({ $0.data.post})
+        let nextPageLink = try JSONDecoder().decode(ResponseJSONRootElement.self, from: data).data.after ?? ""
+        
+        return (posts, nextPageLink)
     }
 }

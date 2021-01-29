@@ -48,14 +48,35 @@ class reddit_clientTests: XCTestCase {
         waitForExpectations(timeout: 0.1)
     }
     
+    func test_load_deliversInvalidDataErrorOn200HTTPResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+        client.receivedInvalidJson = true
+        
+        let expectedResult: Result<[FeedItem], RemoteFeedLoader.Error> = .failure(.invalidData)
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.load() {
+            switch ($0, expectedResult) {
+            case let (.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems)
+
+            case let (.failure(receivedError as RemoteFeedLoader.Error), .failure(expectedError)):
+                XCTAssertEqual(receivedError, expectedError)
+
+            default:
+                XCTFail("Expected result \(expectedResult) got \($0) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.1)
+    }
+
 //    func test_load_deliversNoItemsOnHTTPResponseWithEmptyJSONList() {
 //        let (sut, client) = makeSUT()
-//        
-//    }
-//    
-//    func test_load_deliversItemsOnHTTPResponseWithJSONItems() {
-//        let (sut, client) = makeSUT()
-//        
+//
 //    }
     
     // MARK: - helpers
@@ -75,12 +96,25 @@ class reddit_clientTests: XCTestCase {
         var error: Error?
         var complete: (HTTPClientResult) -> Void = {_ in }
         
+        var receivedInvalidJson: Bool = false
+        
         func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             complete = completion
             if let error = error {
                 complete(.failure(error))
             }
             requestedURL = url
+            
+            if receivedInvalidJson {
+                let invalidJson = Data("invalid json".utf8)
+                self.complete(withInvalidJSON: invalidJson, completion: completion)
+            }
+        }
+        
+        func complete(withInvalidJSON json: Data, completion: @escaping (HTTPClientResult) -> Void) {
+            if let url = requestedURL, let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil) {
+                completion(.success(json, response))
+            }
         }
     }
 }
